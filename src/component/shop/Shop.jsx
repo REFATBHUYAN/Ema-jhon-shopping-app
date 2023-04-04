@@ -10,7 +10,7 @@ const Shop = () => {
     fetch("products.json")
       .then((res) => res.json())
       .then((data) => setProduct(data));
-  }, []);
+  }, []); 
 
   useEffect(() => {
     const storedCart = getShoppingCart();

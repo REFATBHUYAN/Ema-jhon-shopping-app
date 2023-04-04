@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-  import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const Product = ({ item, handleAddToCart }) => {
   const { img, name, seller, price, category } = item;
