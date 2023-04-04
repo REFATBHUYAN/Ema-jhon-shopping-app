@@ -1,6 +1,11 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTrashRestore,
+  faCheckToSlot,
+} from "@fortawesome/free-solid-svg-icons";
 
-const Cart = ({ cart }) => {
+const Cart = ({ cart, handleCartClear, children }) => {
   //   const { cart } = props;
   //   console.log(cart);
   let total = 0;
@@ -28,6 +33,16 @@ const Cart = ({ cart }) => {
       <p className="my-3 font-bold text-2xl">
         Grand Total: {grandTotal.toFixed(2)}
       </p>
+      <button
+        onClick={handleCartClear}
+        className="my-3 font-bold bg-red-600 text-white rounded-md w-full"
+      >
+        Clear Cart <FontAwesomeIcon icon={faTrashRestore} />
+      </button>
+      {/* <button className="my-3 font-bold bg-orange-700 text-white rounded-md w-full">
+        Proceed Checkout <FontAwesomeIcon icon={faCheckToSlot} />
+      </button> */}
+      {children}
     </div>
   );
 };

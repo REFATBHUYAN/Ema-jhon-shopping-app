@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { addToDb, getShoppingCart } from "../../utilities/fakedb";
+import {
+  addToDb,
+  deleteShoppingCart,
+  getShoppingCart,
+} from "../../utilities/fakedb";
 import Cart from "../cart/Cart";
 import Product from "../product/Product";
+import { Link } from "react-router-dom";
 
 const Shop = () => {
   const [product, setProduct] = useState([]);
@@ -10,7 +15,7 @@ const Shop = () => {
     fetch("products.json")
       .then((res) => res.json())
       .then((data) => setProduct(data));
-  }, []); 
+  }, []);
 
   useEffect(() => {
     const storedCart = getShoppingCart();
@@ -31,6 +36,10 @@ const Shop = () => {
     setCart(newCart);
     addToDb(product.id);
   };
+  const handleCartClear = () => {
+    setCart([]);
+    deleteShoppingCart();
+  };
 
   return (
     <div className="flex">
@@ -44,7 +53,14 @@ const Shop = () => {
         ))}
       </div>
       <div className="w-1/4 bg-[rgba(255,153,0,0.3)] p-8">
-        <Cart cart={cart}></Cart>
+        <Cart cart={cart} handleCartClear={handleCartClear}>
+          <Link to="/orders">
+            <button className="my-3 font-bold bg-orange-700 text-white rounded-md w-full">
+              {/* Proceed Checkout <FontAwesomeIcon icon={faCheckToSlot} /> */}
+              Review Order
+            </button>
+          </Link>
+        </Cart>
       </div>
     </div>
   );

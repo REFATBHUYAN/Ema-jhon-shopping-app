@@ -1,10 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faShoppingCart,
-  faTrash,
-  faTrashRestore,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTrashRestore } from "@fortawesome/free-solid-svg-icons";
 
 const ReviewItem = ({ reviewItem, handleRemoveFromCart }) => {
   const { id, img, price, name, quantity } = reviewItem;

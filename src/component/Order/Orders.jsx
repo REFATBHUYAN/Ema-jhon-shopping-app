@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Cart from "../cart/Cart";
 import ReviewItem from "../ReviewItem/ReviewItem";
-import { removeFromDb } from "../../utilities/fakedb";
+import { deleteShoppingCart, removeFromDb } from "../../utilities/fakedb";
 
 const Orders = () => {
   const savedCart = useLoaderData();
@@ -12,6 +12,10 @@ const Orders = () => {
     const remaining = cart.filter((product) => product.id !== id);
     setCart(remaining);
     removeFromDb(id);
+  };
+  const handleCartClear = () => {
+    setCart([]);
+    deleteShoppingCart();
   };
 
   return (
@@ -25,7 +29,14 @@ const Orders = () => {
         ))}
       </div>
       <div className=" w-1/3 bg-[rgba(255,153,0,0.3)] text-center rounded-md p-4 h-full">
-        <Cart cart={cart}></Cart>
+        <Cart cart={cart} handleCartClear={handleCartClear}>
+          <Link to="/">
+            <button className="my-3 font-bold bg-orange-700 text-white rounded-md w-full">
+              {/* Proceed Shop <FontAwesomeIcon icon={faCheckToSlot} /> */}{" "}
+              Proceed Shop
+            </button>
+          </Link>
+        </Cart>
       </div>
     </div>
   );
